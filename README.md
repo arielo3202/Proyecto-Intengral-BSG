@@ -120,4 +120,7 @@ make run-backend
 
 # 4. En la TERMINAL 2: Iniciar el Frontend React + Vite Pixel Art (Puerto 5173)
 make run-frontend
+
+# 5. En BASH: Realizar pruebas Unitarias, de Resilencia y Agente ADK, de Integración y Seguridad API
+make test
 ```
