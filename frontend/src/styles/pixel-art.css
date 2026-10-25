@@ -1,0 +1,250 @@
+/* ============================================================================
+   TechCorp LATAM — Sistema de Diseño UI/UX Pixel Art (Accesible WCAG AA/AAA)
+   Inspirado en Terminales Financieras de 16-bits y Monitores CRT de Alto Contraste
+   ============================================================================ */
+
+:root {
+  --px-bg-deep: #0b0f19;
+  --px-bg-panel: #131b2e;
+  --px-bg-card: #1b253d;
+  --px-bg-input: #090d16;
+
+  /* Colores de acento con ratio de contraste > 7.2:1 sobre #0b0f19 y #131b2e */
+  --px-amber: #ffb703;
+  --px-cyan: #38bdf8;
+  --px-emerald: #10b981;
+  --px-coral: #f43f5e;
+  --px-violet: #a855f7;
+
+  --px-text-main: #f8fafc;
+  --px-text-muted: #cbd5e1;
+
+  --px-border-light: #475569;
+  --px-border-dark: #020617;
+
+  --font-pixel-title: "Press Start 2P", "Courier New", monospace;
+  --font-pixel-terminal: "VT323", "JetBrains Mono", monospace;
+  --font-mono-body: "JetBrains Mono", "Courier New", monospace;
+}
+
+* {
+  box-sizing: border-box;
+  image-rendering: pixelated;
+}
+
+body {
+  margin: 0;
+  padding: 0;
+  background-color: var(--px-bg-deep);
+  background-image:
+    radial-gradient(rgba(56, 189, 248, 0.07) 1px, transparent 0),
+    linear-gradient(to bottom, rgba(15, 23, 42, 0.4) 50%, rgba(2, 6, 23, 0.4) 50%);
+  background-size: 16px 16px, 100% 4px;
+  color: var(--px-text-main);
+  font-family: var(--font-mono-body);
+  font-size: 15px;
+  line-height: 1.55;
+}
+
+/* Foco visible de alta visibilidad para navegación por teclado (WCAG 2.4.7) */
+:focus-visible {
+  outline: 3px dashed var(--px-amber) !important;
+  outline-offset: 3px !important;
+}
+
+.skip-link {
+  position: absolute;
+  top: -48px;
+  left: 12px;
+  background: var(--px-amber);
+  color: #000;
+  padding: 8px 14px;
+  font-family: var(--font-pixel-title);
+  font-size: 11px;
+  z-index: 9999;
+  text-decoration: none;
+}
+
+.skip-link:focus {
+  top: 12px;
+}
+
+/* Contenedor con bordes escalonados estilo 8-bit / 16-bit */
+.pixel-window {
+  background-color: var(--px-bg-panel);
+  border: 4px solid var(--px-text-main);
+  box-shadow:
+    -4px 0 0 0 var(--px-border-dark),
+    4px 0 0 0 var(--px-border-dark),
+    0 -4px 0 0 var(--px-border-dark),
+    0 4px 0 0 var(--px-border-dark),
+    6px 6px 0 0 rgba(0, 0, 0, 0.85);
+  padding: 18px;
+  margin-bottom: 20px;
+}
+
+.pixel-card {
+  background-color: var(--px-bg-card);
+  border: 3px solid var(--px-cyan);
+  box-shadow: 4px 4px 0 0 #020617;
+  padding: 14px;
+}
+
+.pixel-card-amber {
+  border-color: var(--px-amber);
+}
+
+.pixel-card-emerald {
+  border-color: var(--px-emerald);
+}
+
+.pixel-card-coral {
+  border-color: var(--px-coral);
+}
+
+.pixel-title {
+  font-family: var(--font-pixel-title);
+  font-size: 14px;
+  letter-spacing: 0.5px;
+  color: var(--px-amber);
+  text-shadow: 2px 2px 0 #000;
+  margin: 0 0 12px 0;
+  line-height: 1.45;
+}
+
+.pixel-subtitle {
+  font-family: var(--font-pixel-terminal);
+  font-size: 22px;
+  color: var(--px-cyan);
+  margin: 0 0 8px 0;
+}
+
+/* Botones Pixel Art con efecto mecánico al presionar */
+.pixel-btn {
+  font-family: var(--font-pixel-title);
+  font-size: 11px;
+  padding: 10px 14px;
+  background-color: var(--px-amber);
+  color: #090d16;
+  border: 3px solid #ffffff;
+  box-shadow: 4px 4px 0 0 #000000;
+  cursor: pointer;
+  text-transform: uppercase;
+  transition: transform 0.06s ease;
+}
+
+.pixel-btn:hover:not(:disabled) {
+  background-color: #ffd166;
+  transform: translate(-1px, -1px);
+  box-shadow: 5px 5px 0 0 #000000;
+}
+
+.pixel-btn:active:not(:disabled) {
+  transform: translate(3px, 3px);
+  box-shadow: 1px 1px 0 0 #000000;
+}
+
+.pixel-btn:disabled {
+  opacity: 0.55;
+  cursor: not-allowed;
+}
+
+.pixel-btn-cyan {
+  background-color: var(--px-cyan);
+  color: #020617;
+}
+
+.pixel-btn-emerald {
+  background-color: var(--px-emerald);
+  color: #020617;
+}
+
+.pixel-btn-coral {
+  background-color: var(--px-coral);
+  color: #ffffff;
+}
+
+/* Entradas de texto Pixel Art */
+.pixel-input,
+.pixel-select {
+  width: 100%;
+  background-color: var(--px-bg-input);
+  color: var(--px-text-main);
+  border: 3px solid var(--px-cyan);
+  box-shadow: inset 3px 3px 0 0 #000000;
+  padding: 10px 12px;
+  font-family: var(--font-mono-body);
+  font-size: 14px;
+}
+
+/* Badges de estado semántico */
+.pixel-badge {
+  display: inline-block;
+  font-family: var(--font-pixel-title);
+  font-size: 10px;
+  padding: 5px 8px;
+  border: 2px solid #fff;
+  box-shadow: 2px 2px 0 0 #000;
+}
+
+.badge-closed {
+  background-color: var(--px-emerald);
+  color: #020617;
+}
+
+.badge-open {
+  background-color: var(--px-coral);
+  color: #ffffff;
+}
+
+.badge-half {
+  background-color: var(--px-amber);
+  color: #020617;
+}
+
+/* Barras gráficas estilo 8-bit para el Análisis de Costos E6 */
+.pixel-bar-track {
+  width: 100%;
+  height: 22px;
+  background-color: #090d16;
+  border: 2px solid var(--px-text-main);
+  position: relative;
+  overflow: hidden;
+}
+
+.pixel-bar-fill {
+  height: 100%;
+  background-image: repeating-linear-gradient(
+    90deg,
+    currentColor 0px,
+    currentColor 10px,
+    rgba(0, 0, 0, 0.28) 10px,
+    rgba(0, 0, 0, 0.28) 14px
+  );
+  transition: width 0.25s steps(10);
+}
+
+/* Tablas Financieras y de Auditoría */
+.pixel-table {
+  width: 100%;
+  border-collapse: collapse;
+  font-size: 13px;
+}
+
+.pixel-table th,
+.pixel-table td {
+  border: 2px solid var(--px-border-light);
+  padding: 8px 10px;
+  text-align: left;
+}
+
+.pixel-table th {
+  background-color: #0f172a;
+  color: var(--px-amber);
+  font-family: var(--font-pixel-title);
+  font-size: 10px;
+}
+
+.pixel-table tr:nth-child(even) {
+  background-color: rgba(255, 255, 255, 0.03);
+}

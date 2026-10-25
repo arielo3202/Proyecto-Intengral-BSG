@@ -1,0 +1,53 @@
+version: "3.9"
+
+services:
+  postgres:
+    image: postgres:16-alpine
+    container_name: techcorp-postgres16
+    environment:
+      POSTGRES_USER: techcorp_user
+      POSTGRES_PASSWORD: ${POSTGRES_PASSWORD:-techcorp_local_dev_pass}
+      POSTGRES_DB: techcorp_adk
+    ports:
+      - "5432:5432"
+    volumes:
+      - ./scripts/init_db.sql:/docker-entrypoint-initdb.d/01_init_db.sql:ro
+    healthcheck:
+      test: ["CMD-SHELL", "pg_isready -U techcorp_user -d techcorp_adk"]
+      interval: 10s
+      timeout: 5s
+      retries: 5
+
+  ollama:
+    image: ollama/ollama:latest
+    container_name: techcorp-ollama-fallback
+    ports:
+      - "11434:11434"
+    volumes:
+      - ollama_models:/root/.ollama
+
+  backend:
+    build:
+      context: .
+      dockerfile: deploy/Dockerfile.backend
+    container_name: techcorp-adk-backend
+    ports:
+      - "8000:8000"
+    env_file:
+      - .env.example
+    depends_on:
+      postgres:
+        condition: service_healthy
+
+  frontend:
+    build:
+      context: .
+      dockerfile: deploy/Dockerfile.frontend
+    container_name: techcorp-pixel-frontend
+    ports:
+      - "5173:8080"
+    depends_on:
+      - backend
+
+volumes:
+  ollama_models:

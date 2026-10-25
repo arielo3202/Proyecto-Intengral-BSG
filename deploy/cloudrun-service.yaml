@@ -1,0 +1,40 @@
+apiVersion: serving.knative.dev/v1
+kind: Service
+metadata:
+  name: techcorp-asistente-adk-backend
+  annotations:
+    run.googleapis.com/ingress: all
+spec:
+  template:
+    metadata:
+      annotations:
+        autoscaling.knative.dev/minScale: "1"
+        autoscaling.knative.dev/maxScale: "15"
+        run.googleapis.com/cloudsql-instances: "techcorp-latam-prod:us-central1:techcorp-pg16-prod"
+    spec:
+      serviceAccountName: sa-techcorp-adk-runner@techcorp-latam-prod.iam.gserviceaccount.com
+      containers:
+        - image: us-central1-docker.pkg.dev/techcorp-latam-prod/techcorp-repo/asistente-backend:1.0.0
+          ports:
+            - containerPort: 8000
+          resources:
+            limits:
+              cpu: "2"
+              memory: 4Gi
+          env:
+            - name: APP_ENV
+              value: "production"
+            - name: VERTEX_PRIMARY_MODEL
+              value: "gemini-2.5-pro"
+            - name: VERTEX_LIGHT_MODEL
+              value: "gemini-2.5-flash"
+            - name: JWT_SECRET_KEY
+              valueFrom:
+                secretKeyRef:
+                  name: jwt-secret-key
+                  key: latest
+            - name: DATABASE_URL
+              valueFrom:
+                secretKeyRef:
+                  name: cloudsql-db-url
+                  key: latest
