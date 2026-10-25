@@ -115,6 +115,7 @@ source .venv/bin/activate
 
 # 3. Instalar dependencias y preparar la BD
 make install
+make db-up
 make db-migrate
 make seed
 
