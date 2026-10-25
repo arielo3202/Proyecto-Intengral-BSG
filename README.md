@@ -106,14 +106,18 @@ techcorp-asistente-adk/
 ## ⚡ Inicio Rápido en Terminales Separadas
 
 ```bash
-# 1. Crear el entorno virtual .venv (Python 3.14), instalar dependencias y preparar la BD
+# 1. Clonar repositorio 
+git clone https://github.com/arielo3202/Proyecto-Intengral-BSG.git
+
+# 2. Crear el entorno virtual .venv (Python 3.14), instalar dependencias y preparar la BD
+make setup-venv
 make install
 make db-migrate
 make seed
 
-# 2. En la TERMINAL 1: Iniciar el Backend FastAPI + Google ADK Runner (Puerto 8000)
+# 3. En la TERMINAL 1: Iniciar el Backend FastAPI + Google ADK Runner (Puerto 8000)
 make run-backend
 
-# 3. En la TERMINAL 2: Iniciar el Frontend React + Vite Pixel Art (Puerto 5173)
+# 4. En la TERMINAL 2: Iniciar el Frontend React + Vite Pixel Art (Puerto 5173)
 make run-frontend
 ```
