@@ -109,18 +109,21 @@ techcorp-asistente-adk/
 # 1. Clonar repositorio 
 git clone https://github.com/arielo3202/Proyecto-Intengral-BSG.git
 
-# 2. Crear el entorno virtual .venv (Python 3.14), instalar dependencias y preparar la BD
+# 2. Crear el entorno virtual .venv (Python 3.14) 
 make setup-venv
+source .venv/bin/activate
+
+# 3. Instalar dependencias y preparar la BD
 make install
 make db-migrate
 make seed
 
-# 3. En la TERMINAL 1: Iniciar el Backend FastAPI + Google ADK Runner (Puerto 8000)
+# 4. En la TERMINAL 1: Iniciar el Backend FastAPI + Google ADK Runner (Puerto 8000)
 make run-backend
 
-# 4. En la TERMINAL 2: Iniciar el Frontend React + Vite Pixel Art (Puerto 5173)
+# 5. En la TERMINAL 2: Iniciar el Frontend React + Vite Pixel Art (Puerto 5173)
 make run-frontend
 
-# 5. En BASH: Realizar pruebas Unitarias, de Resilencia y Agente ADK, de Integración y Seguridad API
+# 6. En BASH: Realizar pruebas Unitarias, de Resilencia y Agente ADK, de Integración y Seguridad API
 make test
 ```
