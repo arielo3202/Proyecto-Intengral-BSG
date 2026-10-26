@@ -50,7 +50,7 @@ El agente principal (`TechCorpADKRootAgent`) implementa el patrón **ReAct** en 
 
 Cada interacción procesada por el sistema genera un registro en la tabla `immutable_audit_logs` y en el archivo append-only `audit_trail.jsonl`. Para garantizar la inmutabilidad criptográfica:
 
-$$H_n = \text{SHA256}\left( H_{n-1} \,\|\, \texttt{timestamp}_n \,\|\, \texttt{user\_id}_n \,\|\, \texttt{session\_id}_n \,\|\, \texttt{model}_n \,\|\, \texttt{prompt\_hash}_n \,\|\, \texttt{response\_hash}_n \,\|\, \texttt{cost\_usd}_n \right)$$
+$$H_n = \text{SHA256}\left( H_{n-1} \,\|\, \text{timestamp}_n,\|\, \text{user\_id}_n,\|\, \text{session\_id}_n,\|\, \text{model}_n,\|\, \text{prompt\_hash}_n,\|\, \text{response\_hash}_n,\|\, \text{cost\_usd}_n \right)$$
 
 Donde $H_0 = \text{"0"} \times 64$ (Genesis Hash). Cualquier alteración manual de una fila histórica invalida inmediatamente la cadena completa al ejecutar el verificador de integridad en `/api/v1/admin/audit/verify`.
 
