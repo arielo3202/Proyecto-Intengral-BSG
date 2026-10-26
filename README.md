@@ -38,7 +38,7 @@ source .venv/bin/activate
 # 3. Instalar dependencias y preparar la BD
 make install
 make db-up
-- Si el Docker niega permiso, en BASH escribir
+# Si el Docker niega permiso, en BASH escribir
 sudo usermod -aG docker $USER
 sudo apt install util-linux-extra 
 
