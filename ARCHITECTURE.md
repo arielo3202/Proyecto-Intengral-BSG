@@ -79,7 +79,7 @@ classDiagram
     class FastAPIGateway {
         +POST /api/v1/auth/login
         +POST /api/v1/chat/message
-        +GET /api/v1/chat/sessions/{session_id}
+        +GET /api/v1/chat/sessions/session_id
         +GET /api/v1/admin/dashboard
         +GET /api/v1/admin/audit
         +GET /api/v1/admin/export/csv
