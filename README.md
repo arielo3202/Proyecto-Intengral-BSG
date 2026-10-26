@@ -41,6 +41,8 @@ make db-up
 # Si el Docker niega permiso, en BASH escribir
 sudo usermod -aG docker $USER
 sudo apt install util-linux-extra 
+newgrp docker
+docker pull ollama/ollama:latest
 
 make db-migrate
 make seed
