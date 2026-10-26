@@ -23,7 +23,37 @@ Sistema empresarial de asistencia conversacional multi-turno, análisis cuantita
 4. **Rate Limiting Estricto:** Límite de **10 requests/minuto por usuario** con respuesta `HTTP 429` y cabeceras `X-RateLimit-*`.
 
 ---
+---
 
+## ⚡ Inicio Rápido en Terminales Separadas
+
+```bash
+# 1. Clonar repositorio 
+git clone https://github.com/arielo3202/Proyecto-Intengral-BSG.git
+
+# 2. Crear el entorno virtual .venv (Python 3.14) 
+make setup-venv
+source .venv/bin/activate
+
+# 3. Instalar dependencias y preparar la BD
+make install
+make db-up
+- Si el Docker niega permiso, en BASH escribir
+sudo usermod -aG docker $USER
+sudo apt install util-linux-extra 
+
+make db-migrate
+make seed
+
+# 4. En la TERMINAL 1: Iniciar el Backend FastAPI + Google ADK Runner (Puerto 8000)
+make run-backend
+
+# 5. En la TERMINAL 2: Iniciar el Frontend React + Vite Pixel Art (Puerto 5173)
+make run-frontend
+
+# 6. En BASH: Realizar pruebas Unitarias, de Resilencia y Agente ADK, de Integración y Seguridad API
+make test
+```
 ## 📁 Estructura del Proyecto
 
 ```text
@@ -101,33 +131,4 @@ techcorp-asistente-adk/
             └── AdminCostDashboard.tsx
 ```
 
----
 
-## ⚡ Inicio Rápido en Terminales Separadas
-
-```bash
-# 1. Clonar repositorio 
-git clone https://github.com/arielo3202/Proyecto-Intengral-BSG.git
-
-# 2. Crear el entorno virtual .venv (Python 3.14) 
-make setup-venv
-source .venv/bin/activate
-
-# 3. Instalar dependencias y preparar la BD
-make install
-make db-up
-- Si el Docker niega permiso, en BASH escribir
-sudo usermod -aG docker $USER
-
-make db-migrate
-make seed
-
-# 4. En la TERMINAL 1: Iniciar el Backend FastAPI + Google ADK Runner (Puerto 8000)
-make run-backend
-
-# 5. En la TERMINAL 2: Iniciar el Frontend React + Vite Pixel Art (Puerto 5173)
-make run-frontend
-
-# 6. En BASH: Realizar pruebas Unitarias, de Resilencia y Agente ADK, de Integración y Seguridad API
-make test
-```
